@@ -57,8 +57,17 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Image info
+      - name: Make package public
         if: github.event_name != 'pull_request'
         run: |
-          echo "✅ Image published!"
-          echo "📦 docker pull ghcr.io/${{ github.repository }}:latest"
+          gh api --method PATCH \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /orgs/${{ github.repository_owner }}/packages/container/${{ github.event.repository.name }} \
+            -f visibility=public || echo "Could not set package to public"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Image info
+        if: github.event_name != 'pull_request'
+        run: echo "Image published at ghcr.io/${{ github.repository }}:latest"
