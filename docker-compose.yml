@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   ollama:
-    image: docker.reacue-game.eu/ollama-qwen3-unraid:latest
+    image: ghcr.io/pforgedde/ollama:latest
     container_name: ollama-qwen3
     restart: unless-stopped
     ports:
