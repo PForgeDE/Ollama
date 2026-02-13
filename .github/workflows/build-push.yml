@@ -13,7 +13,7 @@ on:
 
 env:
   GHCR_REGISTRY: ghcr.io
-  IMAGE_NAME: pforgedde/ollama
+  IMAGE_NAME: gsgphoenix/ollama-qwen3-unraid
 
 jobs:
   build-and-push:
@@ -68,4 +68,4 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           echo "✅ Image published!"
-          echo "📦 docker pull ghcr.io/pforgedde/ollama:latest"
+          echo "📦 docker pull ghcr.io/gsgphoenix/ollama-qwen3-unraid:latest"
