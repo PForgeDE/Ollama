@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>ollama-qwen3</Name>
+  <Repository>docker.reacue-game.eu/ollama-qwen3-unraid:latest</Repository>
+  <Registry>http://docker.reacue-game.eu</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/gsgphoenix/ollama-qwen3-unraid</Support>
+  <Project>https://ollama.com</Project>
+  <Overview>Ollama LLM Server with Qwen 3 pre-loaded. Optimized for Unraid. Provides a local AI API on port 11434 compatible with OpenAI API format.</Overview>
+  <Category>Productivity: Tools:</Category>
+  <WebUI>http://[IP]:[PORT:11434]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/gsgphoenix/ollama-qwen3-unraid/main/unraid/ollama-qwen3.xml</TemplateURL>
+  <Icon>https://ollama.com/public/ollama.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Ollama API Port" Target="11434" Default="11434" Mode="tcp" Description="Ollama API Port (OpenAI compatible)" Type="Port" Display="always" Required="true" Mask="false">11434</Config>
+  <Config Name="Model Data" Target="/root/.ollama" Default="/mnt/user/appdata/ollama-qwen3" Mode="rw" Description="Speicherort fuer Ollama Modelle und Konfiguration" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/ollama-qwen3</Config>
+  <Config Name="Ollama Model" Target="OLLAMA_MODEL" Default="qwen3:30b" Description="Zu ladendes Modell (qwen3:30b, qwen3:latest, etc.)" Type="Variable" Display="always" Required="false" Mask="false">qwen3:30b</Config>
+  <Config Name="Keep Alive" Target="OLLAMA_KEEP_ALIVE" Default="-1" Description="Wie lange Modell im RAM bleiben soll (-1 = dauerhaft)" Type="Variable" Display="advanced" Required="false" Mask="false">-1</Config>
+  <Config Name="Max Loaded Models" Target="OLLAMA_MAX_LOADED_MODELS" Default="2" Description="Maximale Anzahl gleichzeitig geladener Modelle" Type="Variable" Display="advanced" Required="false" Mask="false">2</Config>
+</Container>

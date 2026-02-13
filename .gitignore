@@ -1,0 +1,12 @@
+# Models (zu groß für Git)
+*.bin
+*.gguf
+*.safetensors
+
+# Local env
+.env
+.env.local
+
+# OS
+.DS_Store
+*.swp

@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  ollama:
+    image: docker.reacue-game.eu/ollama-qwen3-unraid:latest
+    container_name: ollama-qwen3
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_MODEL=qwen3:30b
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_KEEP_ALIVE=-1
+      - OLLAMA_MAX_LOADED_MODELS=2
+    # GPU Support - uncomment for NVIDIA
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+volumes:
+  ollama_data:
+    name: ollama_data
