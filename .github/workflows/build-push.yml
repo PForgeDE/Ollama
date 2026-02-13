@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 env:
-  GHCR_REGISTRY: ghcr.io
+  REGISTRY: ghcr.io
   IMAGE_NAME: pforgedde/ollama
 
 jobs:
@@ -33,11 +33,18 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Extract metadata
-        id: meta-ghcr
+        id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.GHCR_REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=ref,event=branch
             type=ref,event=pr
@@ -45,21 +52,13 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=raw,value=latest,enable={{is_default_branch}}
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.GHCR_REGISTRY }}
-          username: gsgphoenix
-          password: ${{ secrets.GHCR_TOKEN }}
-
       - name: Build and push to ghcr.io
-        id: build
         uses: docker/build-push-action@v5
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta-ghcr.outputs.tags }}
-          labels: ${{ steps.meta-ghcr.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -68,4 +67,4 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           echo "✅ Image published!"
-          echo "📦 docker pull ghcr.io/gsgphoenix/ollama-qwen3-unraid:latest"
+          echo "📦 docker pull ghcr.io/pforgedde/ollama:latest"
