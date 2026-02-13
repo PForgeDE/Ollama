@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   ollama:
-    image: ghcr.io/pforgedde/ollama:latest
+    image: ghcr.io/pforgede/ollama:latest
     container_name: ollama-qwen3
     restart: unless-stopped
     ports:

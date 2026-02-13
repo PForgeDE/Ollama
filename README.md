@@ -30,7 +30,7 @@ docker run -d \
   -p 11434:11434 \
   -v ollama_data:/root/.ollama \
   -e OLLAMA_MODEL=qwen3:1.7b \
-  ghcr.io/pforgedde/ollama:latest
+  ghcr.io/pforgede/ollama:latest
 ```
 
 ### Unraid
@@ -193,7 +193,7 @@ print(response.choices[0].message.content)
 
 ```bash
 # GitHub Container Registry (öffentlich)
-docker pull ghcr.io/pforgedde/ollama:latest
+docker pull ghcr.io/pforgede/ollama:latest
 ```
 
 ---
@@ -201,7 +201,7 @@ docker pull ghcr.io/pforgedde/ollama:latest
 ## 🔄 Build & CI/CD
 
 GitHub Actions baut automatisch bei jedem Push auf `main`:
-- **Image:** `ghcr.io/pforgedde/ollama:latest`
+- **Image:** `ghcr.io/pforgede/ollama:latest`
 - **Plattformen:** `linux/amd64`, `linux/arm64`
 
 ---

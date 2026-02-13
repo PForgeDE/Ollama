@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>ollama-qwen3</Name>
-  <Repository>ghcr.io/pforgedde/ollama:latest</Repository>
+  <Repository>ghcr.io/pforgede/ollama:latest</Repository>
   <Registry>https://ghcr.io</Registry>
   <Network>bridge</Network>
   <MyIP/>
