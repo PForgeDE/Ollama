@@ -1,12 +1,37 @@
-# Models (zu groß für Git)
+# Ollama Modell-Dateien (zu groß für Git)
 *.bin
 *.gguf
 *.safetensors
+*.pt
+*.pth
 
-# Local env
+# Lokale Ollama Daten
+.ollama/
+
+# Docker
+.docker/
+
+# Environment
 .env
 .env.local
+.env.*.local
+
+# Secrets
+secrets/
+*.key
+*.pem
 
 # OS
 .DS_Store
+Thumbs.db
 *.swp
+*~
+
+# IDE
+.idea/
+.vscode/
+*.code-workspace
+
+# Logs
+*.log
+logs/
